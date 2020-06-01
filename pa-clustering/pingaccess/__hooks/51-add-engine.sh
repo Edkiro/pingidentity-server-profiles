@@ -31,7 +31,8 @@ if [[ ! -z "${OPERATIONAL_MODE}" && "${OPERATIONAL_MODE}" = "CLUSTERED_ENGINE" ]
 
     # Get Engine Certificate ID
     echo "Retrieving Key Pair ID from administration API..."
-    echo "TEST https://${pahost}:${PA_ADMIN_PUBLIC_PORT}/pa-admin-api/v3/httpsListeners"
+    echo "TEST..."
+    echo "${pahost}:${PA_ADMIN_PUBLIC_PORT}"
     curl -v -k -u Administrator:"${INITIAL_ADMIN_PASSWORD}" -H "X-Xsrf-Header: PingAccess" https://${pahost}:${PA_ADMIN_PUBLIC_PORT}/pa-admin-api/v3/httpsListeners
     keypairid=$( curl -v -k -u Administrator:"${INITIAL_ADMIN_PASSWORD}" -H "X-Xsrf-Header: PingAccess" https://${pahost}:${PA_ADMIN_PUBLIC_PORT}/pa-admin-api/v3/httpsListeners | jq '.items[] | select(.name=="CONFIG QUERY") | .keyPairId' )
     echo "KeyPairId:"${keypairid}
